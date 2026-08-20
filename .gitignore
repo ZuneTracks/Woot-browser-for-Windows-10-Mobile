@@ -1,0 +1,25 @@
+# UWP build output
+[Bb]in/
+[Oo]bj/
+[Aa]ppPackages/
+
+# Visual Studio and local settings
+.vs/
+*.user
+*.suo
+*.userprefs
+
+# Store association is local until the app is associated with Partner Center.
+# Commit it only after reviewing the non-secret identity values it contains.
+Package.StoreAssociation.xml
+
+# Development or local signing material and generated packages
+*.pfx
+*.cer
+*.appx
+*.appxbundle
+*.appxupload
+*.appxsym
+*.msix
+*.msixbundle
+*.msixupload
