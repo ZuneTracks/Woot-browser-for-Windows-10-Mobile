@@ -46,6 +46,10 @@ establish that eligibility.
   version component for Store use, so it must be `0`.
 - Added ignore rules for generated packages, symbols, certificates, and local
   Store association metadata.
+- The classic project uses the VS 2017 UAP project flavor
+  `A5A43C5B-DE2A-4C0C-9213-0A381AF9435A`. Open the authoritative solution in
+  full Visual Studio 2017 with the UWP workload; Visual Studio Build Tools
+  cannot expose Store association commands.
 
 ## Exact blockers and user/Partner Center actions
 
