@@ -1,6 +1,6 @@
 # Changelog
 
-## v1.0.9.0 - Store packaging preparation
+## v1.0.9.0 - Store packaging preparation and navigation fix
 
 - Added an explicit ARM Store-upload configuration that creates an unsigned
   `.appxupload` candidate with public symbols.
@@ -8,6 +8,9 @@
   before Store packaging.
 - Updated the package version to use a Store-compatible fourth version field of
   `0`.
+- Preserved the Search pivot and its prior results when navigating Search ->
+  video -> Back by caching `MainPage`; Home and Categories video navigation
+  behavior is unchanged.
 
 ## v1.0.7.4 - First public release
 

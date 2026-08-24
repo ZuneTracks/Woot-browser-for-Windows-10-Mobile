@@ -6,9 +6,15 @@ folders and are not referenced by the UWP project. Only the existing image files
 are linked as package assets; no recovered application code, token handling, stream
 handling, or binary libraries are reused.
 
-## First public release
+## Current release: v1.0.9.0
 
-`v1.0.7.4` is the first public YourTube UWP release. It includes an ARM Windows 10
+v1.0.9.0 is the current YourTube UWP release. It includes the ARM Windows 10
+Mobile Developer Mode sideload package and preserves the Search pivot/results
+when returning with Back after opening or playing a video. This navigation
+state is retained through `MainPage` navigation caching; Home and Categories
+video navigation remain unchanged.
+
+The original `v1.0.7.4` release included an ARM Windows 10
 Mobile Developer Mode sideload package for devices running 10.0.15063.0 or later.
 The release assets include the AppX, its public development certificate, the two
 required ARM framework packages, and installation instructions.
