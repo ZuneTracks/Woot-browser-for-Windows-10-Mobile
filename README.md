@@ -7,6 +7,13 @@ catalog surface with swipeable Woot! feed pivots. Enter a Woot API key in
 sent only as the `x-api-key` request header. Deal data is rendered with native
 UWP controls and offer links are intentionally not handled as checkout APIs.
 
+## About the app
+
+Woot! browser for Windows 10 Mobile is a Metro-inspired modern Windows app for
+browsing Woot! daily deals. It uses a clean, touch-friendly layout with swipeable
+category pivots, native deal cards, Woot green accents, and light/dark appearance
+options while remaining compatible with the Windows 10 Mobile UWP platform.
+
 The supported feed pivots are Featured, All, Clearance, Computers, Electronics,
 Home, Gourmet, Shirts, Sports, Tools, and Woot-Off.
 
