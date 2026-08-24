@@ -44,7 +44,7 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
                     <Image Source="Assets/Square44x44Logo.png" Width="38" Height="38" VerticalAlignment="Center" Stretch="Uniform" />
                     <StackPanel Margin="10,0,0,0">
                     <TextBlock Text="WOOT!" FontFamily="Segoe UI Semibold" FontSize="22" Foreground="{StaticResource PhonePrimaryTextBrush}" />
