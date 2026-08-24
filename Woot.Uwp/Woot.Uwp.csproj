@@ -8,8 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">ARM</Platform>
     <ProjectGuid>{A4BF4D44-6B1F-414F-92EC-A7D7F6BB3AB0}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
-    <RootNamespace>YouTube.Uwp</RootNamespace>
-    <AssemblyName>YourTube</AssemblyName>
+    <RootNamespace>Woot.Uwp</RootNamespace>
+    <AssemblyName>Woot</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.15063.0</TargetPlatformVersion>
@@ -89,22 +89,10 @@
   <ItemGroup>
     <Compile Include="App.xaml.cs" />
     <Compile Include="MainPage.xaml.cs" />
-    <Compile Include="Models\ChannelDetails.cs" />
-    <Compile Include="Models\DataPage.cs" />
-    <Compile Include="Models\PivotHeader.cs" />
-    <Compile Include="Models\VideoDetails.cs" />
-    <Compile Include="Models\VideoCategory.cs" />
-    <Compile Include="Models\VideoSummary.cs" />
-    <Compile Include="Services\OAuthPkceService.cs" />
-    <Compile Include="Services\LiveTileStateStore.cs" />
-    <Compile Include="Services\RuntimeConfiguration.cs" />
-    <Compile Include="Services\SecureCredentialStore.cs" />
-    <Compile Include="Services\TrendingTileService.cs" />
-    <Compile Include="Services\YouTubeDataApiClient.cs" />
-    <Compile Include="Views\ChannelDetailsPage.xaml.cs" />
+    <Compile Include="Models\WootDeal.cs" />
+    <Compile Include="Models\WootFeedViewModel.cs" />
+    <Compile Include="Services\WootApiClient.cs" />
     <Compile Include="Views\SettingsPage.xaml.cs" />
-    <Compile Include="Views\VideoDetailsPage.xaml.cs" />
-    <Compile Include="Views\VideoPlayerPage.xaml.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -113,16 +101,7 @@
     <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ChannelDetailsPage.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\SettingsPage.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\VideoDetailsPage.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\VideoPlayerPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <AppxManifest Include="Package.appxmanifest" />

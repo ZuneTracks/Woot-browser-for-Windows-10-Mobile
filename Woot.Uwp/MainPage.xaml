@@ -1,0 +1,73 @@
+<Page
+    x:Class="Woot.Uwp.MainPage"
+    NavigationCacheMode="Enabled"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Page.Resources>
+        <DataTemplate x:Key="DealTemplate">
+            <Border Background="{StaticResource PhoneCardBrush}" Padding="10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="112" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image Source="{Binding ImageUrl}" Width="102" Height="102" Stretch="UniformToFill" ImageFailed="DealImage_ImageFailed" />
+                    <StackPanel Grid.Column="1" Margin="12,0,0,0">
+                        <TextBlock Text="{Binding Title}" FontSize="17" Foreground="{StaticResource PhonePrimaryTextBrush}" TextWrapping="Wrap" MaxLines="3" />
+                        <TextBlock Text="{Binding Subtitle}" Foreground="{StaticResource PhoneMutedTextBrush}" TextWrapping="Wrap" Margin="0,4,0,0" />
+                        <StackPanel Orientation="Horizontal" Margin="0,9,0,0">
+                            <TextBlock Text="{Binding SalePrice}" FontSize="19" Foreground="{StaticResource PhoneAccentBrush}" />
+                            <TextBlock Text="{Binding ListPrice}" TextDecorations="Strikethrough" Foreground="{StaticResource PhoneMutedTextBrush}" Margin="10,3,0,0" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                            <TextBlock Text="{Binding StateText}" Foreground="{StaticResource PhoneMutedTextBrush}" />
+                            <TextBlock Text="  FEATURED" Foreground="{StaticResource PhoneAccentBrush}" Visibility="{Binding FeaturedVisibility}" />
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key="PivotHeaderTemplate">
+            <TextBlock Text="{Binding}" FontSize="13" Foreground="{StaticResource PhonePrimaryTextBrush}" Margin="16,0" VerticalAlignment="Center" />
+        </DataTemplate>
+    </Page.Resources>
+    <Grid x:Name="RootGrid" Background="{StaticResource PhonePageBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="64" />
+            <RowDefinition Height="4" />
+            <RowDefinition Height="48" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Background="{StaticResource PhoneHeaderBrush}">
+            <Grid Margin="16,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Source="Assets/Square44x44Logo.png" Width="38" Height="38" VerticalAlignment="Center" Stretch="Uniform" />
+                    <StackPanel Margin="10,0,0,0">
+                    <TextBlock Text="WOOT!" FontFamily="Segoe UI Semibold" FontSize="22" Foreground="{StaticResource PhonePrimaryTextBrush}" />
+                    <TextBlock Text="DAILY DEALS" FontSize="10" Foreground="{StaticResource PhoneMutedTextBrush}" />
+                    </StackPanel>
+                </StackPanel>
+                <Button Grid.Column="1" Content="SETTINGS" Style="{StaticResource PhoneOutlineButtonStyle}" Click="ShowSettingsButton_Click" VerticalAlignment="Center" />
+            </Grid>
+        </Border>
+        <Border Grid.Row="1" Background="{StaticResource PhoneAccentBrush}" />
+        <Button Grid.Row="2" Content="REFRESH" Style="{StaticResource PhoneOutlineButtonStyle}" Click="RefreshButton_Click" HorizontalAlignment="Left" Margin="16,6,0,6" />
+        <Pivot x:Name="FeedPivot" Grid.Row="3" SelectionChanged="FeedPivot_SelectionChanged">
+            <PivotItem Header="FEATURED"><ListView Margin="16" ItemsSource="{Binding Feeds[0].Deals}" ItemTemplate="{StaticResource DealTemplate}" ItemContainerStyle="{StaticResource PhoneListItemStyle}"><ListView.Header><TextBlock Text="{Binding Feeds[0].StatusText}" Foreground="{StaticResource PhoneMutedTextBrush}" TextWrapping="Wrap" Margin="0,0,0,10" /></ListView.Header></ListView></PivotItem>
+            <PivotItem Header="ALL"><ListView Margin="16" ItemsSource="{Binding Feeds[1].Deals}" ItemTemplate="{StaticResource DealTemplate}" ItemContainerStyle="{StaticResource PhoneListItemStyle}"><ListView.Header><TextBlock Text="{Binding Feeds[1].StatusText}" Foreground="{StaticResource PhoneMutedTextBrush}" TextWrapping="Wrap" Margin="0,0,0,10" /></ListView.Header></ListView></PivotItem>
+            <PivotItem Header="CLEARANCE"><ListView Margin="16" ItemsSource="{Binding Feeds[2].Deals}" ItemTemplate="{StaticResource DealTemplate}" ItemContainerStyle="{StaticResource PhoneListItemStyle}"><ListView.Header><TextBlock Text="{Binding Feeds[2].StatusText}" Foreground="{StaticResource PhoneMutedTextBrush}" TextWrapping="Wrap" Margin="0,0,0,10" /></ListView.Header></ListView></PivotItem>
+            <PivotItem Header="COMPUTERS"><ListView Margin="16" ItemsSource="{Binding Feeds[3].Deals}" ItemTemplate="{StaticResource DealTemplate}" ItemContainerStyle="{StaticResource PhoneListItemStyle}"><ListView.Header><TextBlock Text="{Binding Feeds[3].StatusText}" Foreground="{StaticResource PhoneMutedTextBrush}" Margin="0,0,0,10" /></ListView.Header></ListView></PivotItem>
+            <PivotItem Header="ELECTRONICS"><ListView Margin="16" ItemsSource="{Binding Feeds[4].Deals}" ItemTemplate="{StaticResource DealTemplate}" ItemContainerStyle="{StaticResource PhoneListItemStyle}"><ListView.Header><TextBlock Text="{Binding Feeds[4].StatusText}" Foreground="{StaticResource PhoneMutedTextBrush}" Margin="0,0,0,10" /></ListView.Header></ListView></PivotItem>
+            <PivotItem Header="HOME"><ListView Margin="16" ItemsSource="{Binding Feeds[5].Deals}" ItemTemplate="{StaticResource DealTemplate}" ItemContainerStyle="{StaticResource PhoneListItemStyle}"><ListView.Header><TextBlock Text="{Binding Feeds[5].StatusText}" Foreground="{StaticResource PhoneMutedTextBrush}" Margin="0,0,0,10" /></ListView.Header></ListView></PivotItem>
+            <PivotItem Header="GOURMET"><ListView Margin="16" ItemsSource="{Binding Feeds[6].Deals}" ItemTemplate="{StaticResource DealTemplate}" ItemContainerStyle="{StaticResource PhoneListItemStyle}"><ListView.Header><TextBlock Text="{Binding Feeds[6].StatusText}" Foreground="{StaticResource PhoneMutedTextBrush}" Margin="0,0,0,10" /></ListView.Header></ListView></PivotItem>
+            <PivotItem Header="SHIRTS"><ListView Margin="16" ItemsSource="{Binding Feeds[7].Deals}" ItemTemplate="{StaticResource DealTemplate}" ItemContainerStyle="{StaticResource PhoneListItemStyle}"><ListView.Header><TextBlock Text="{Binding Feeds[7].StatusText}" Foreground="{StaticResource PhoneMutedTextBrush}" Margin="0,0,0,10" /></ListView.Header></ListView></PivotItem>
+            <PivotItem Header="SPORTS"><ListView Margin="16" ItemsSource="{Binding Feeds[8].Deals}" ItemTemplate="{StaticResource DealTemplate}" ItemContainerStyle="{StaticResource PhoneListItemStyle}"><ListView.Header><TextBlock Text="{Binding Feeds[8].StatusText}" Foreground="{StaticResource PhoneMutedTextBrush}" Margin="0,0,0,10" /></ListView.Header></ListView></PivotItem>
+            <PivotItem Header="TOOLS"><ListView Margin="16" ItemsSource="{Binding Feeds[9].Deals}" ItemTemplate="{StaticResource DealTemplate}" ItemContainerStyle="{StaticResource PhoneListItemStyle}"><ListView.Header><TextBlock Text="{Binding Feeds[9].StatusText}" Foreground="{StaticResource PhoneMutedTextBrush}" Margin="0,0,0,10" /></ListView.Header></ListView></PivotItem>
+            <PivotItem Header="WOOT-OFF"><ListView Margin="16" ItemsSource="{Binding Feeds[10].Deals}" ItemTemplate="{StaticResource DealTemplate}" ItemContainerStyle="{StaticResource PhoneListItemStyle}"><ListView.Header><TextBlock Text="{Binding Feeds[10].StatusText}" Foreground="{StaticResource PhoneMutedTextBrush}" Margin="0,0,0,10" /></ListView.Header></ListView></PivotItem>
+        </Pivot>
+    </Grid>
+</Page>

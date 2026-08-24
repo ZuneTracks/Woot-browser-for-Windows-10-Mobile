@@ -1,0 +1,40 @@
+<Application
+    x:Class="Woot.Uwp.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <SolidColorBrush x:Key="PhonePageBrush" Color="#181818" />
+            <SolidColorBrush x:Key="PhoneHeaderBrush" Color="#242424" />
+            <SolidColorBrush x:Key="PhoneCardBrush" Color="#292929" />
+            <SolidColorBrush x:Key="PhoneAccentBrush" Color="#4CAF50" />
+            <SolidColorBrush x:Key="PhonePrimaryTextBrush" Color="#FFFFFF" />
+            <SolidColorBrush x:Key="PhoneMutedTextBrush" Color="#B8B8B8" />
+            <Style x:Key="PhoneButtonStyle" TargetType="Button">
+                <Setter Property="Foreground" Value="{StaticResource PhonePrimaryTextBrush}" />
+                <Setter Property="Background" Value="{StaticResource PhoneAccentBrush}" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="Padding" Value="16,8" />
+                <Setter Property="Margin" Value="0,0,8,0" />
+            </Style>
+            <Style x:Key="PhoneOutlineButtonStyle" TargetType="Button">
+                <Setter Property="Foreground" Value="{StaticResource PhoneAccentBrush}" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderBrush" Value="{StaticResource PhoneAccentBrush}" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="Padding" Value="14,7" />
+            </Style>
+            <Style x:Key="PhoneTextBoxStyle" TargetType="TextBox">
+                <Setter Property="Foreground" Value="{StaticResource PhonePrimaryTextBrush}" />
+                <Setter Property="Background" Value="#333333" />
+                <Setter Property="BorderBrush" Value="#666666" />
+                <Setter Property="Padding" Value="10,7" />
+                <Setter Property="Margin" Value="0,4,0,12" />
+            </Style>
+            <Style x:Key="PhoneListItemStyle" TargetType="ListViewItem">
+                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                <Setter Property="Margin" Value="0,0,0,10" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -1,6 +1,19 @@
-# YourTube UWP
+# Woot! Native UWP proof of concept
 
-`YouTube.Uwp.sln` contains the YourTube UWP app for Windows 10 Mobile Creators Update
+This branch contains a native Woot! Windows 10 Mobile/UWP proof of concept.
+It keeps the recovered YourTube phone-first visual language while replacing the
+catalog surface with swipeable Woot! feed pivots. Enter a Woot API key in
+**Settings**; it is stored in `ApplicationData.Current.LocalSettings` and is
+sent only as the `x-api-key` request header. Deal data is rendered with native
+UWP controls and offer links are intentionally not handled as checkout APIs.
+
+The supported feed pivots are Featured, All, Clearance, Computers, Electronics,
+Home, Gourmet, Shirts, Sports, Tools, and Woot-Off.
+
+The remainder of this document describes the original YourTube recovery and
+packaging context retained by the project.
+
+`Woot.Uwp.sln` contains the Woot! UWP app for Windows 10 Mobile Creators Update
 (10.0.15063.0) and later. The recovered WP8 projects remain in their original
 folders and are not referenced by the UWP project. Only the existing image files
 are linked as package assets; no recovered application code, token handling, stream
@@ -32,7 +45,7 @@ eligibility caveats, and the exact package command.
 ## Build prerequisites
 
 Install Visual Studio with the **Universal Windows Platform development** workload
-and the Windows 10 SDK version **10.0.15063.0**. Open `YouTube.Uwp.sln`, select
+and the Windows 10 SDK version **10.0.15063.0**. Open `Woot.Uwp.sln`, select
 `Debug | ARM`, then build and deploy to a physical Windows 10 Mobile 15063+ device.
 ARM is the default project and package architecture because Windows 10 Mobile
 devices are ARM-based. `Debug | Any CPU` remains available for architecture-neutral
@@ -72,7 +85,7 @@ styling.
 3. Create an OAuth client appropriate for a public installed application. Do not
    create or ship a client secret. Configure the client ID at runtime in the app.
 4. Choose a unique redirect URI scheme. Replace `yourtube` in both
-   `YouTube.Uwp\Package.appxmanifest` and
+   `Woot.Uwp\Package.appxmanifest` and
    `OAuthPkceService.PackagedRedirectProtocol`, then enter the identical scheme in
    the app's **Redirect protocol** field. UWP protocol registrations are fixed in
    the package, so the runtime setting rejects mismatches rather than launching a
@@ -178,7 +191,7 @@ Those paths are not carried forward.
 
 ## Recovered-source audit
 
-The retained WP8 source is intentionally excluded from `YouTube.Uwp.sln`. The audit
+The retained WP8 source is intentionally excluded from `Woot.Uwp.sln`. The audit
 found retired GData v2 usage in `YouTube.ViewModel` request/model classes (including
 search, videos, channels, comments, playlists, subscriptions, ratings, uploads,
 watch history, watch later, and favorites); old OAuth/token exchange in
