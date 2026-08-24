@@ -1,0 +1,22 @@
+<Page
+    x:Class="Woot.Uwp.Views.OfferDetailsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid x:Name="RootGrid" Background="{StaticResource PhonePageBrush}">
+        <ScrollViewer>
+            <StackPanel Margin="20,28">
+                <Button Content="‹  BACK" Style="{StaticResource PhoneOutlineButtonStyle}" Click="BackButton_Click" HorizontalAlignment="Left" />
+                <Image x:Name="OfferImage" Height="220" Stretch="Uniform" Margin="0,20,0,12" ImageFailed="OfferImage_ImageFailed" />
+                <TextBlock x:Name="TitleText" FontSize="26" Foreground="{StaticResource PhonePrimaryTextBrush}" TextWrapping="Wrap" />
+                <TextBlock x:Name="SubtitleText" Foreground="{StaticResource PhoneMutedTextBrush}" TextWrapping="Wrap" Margin="0,6,0,0" />
+                <StackPanel Orientation="Horizontal" Margin="0,12,0,14">
+                    <TextBlock x:Name="SalePriceText" FontSize="22" Foreground="{StaticResource PhoneAccentBrush}" />
+                    <TextBlock x:Name="ListPriceText" TextDecorations="Strikethrough" Foreground="{StaticResource PhoneMutedTextBrush}" Margin="12,4,0,0" />
+                </StackPanel>
+                <TextBlock x:Name="ContentText" Foreground="{StaticResource PhonePrimaryTextBrush}" TextWrapping="Wrap" />
+                <Button x:Name="PurchaseButton" Content="VIEW ON WOOT" Style="{StaticResource PhoneButtonStyle}" Click="PurchaseButton_Click" HorizontalAlignment="Left" Margin="0,20,0,0" />
+                <TextBlock x:Name="StatusText" Foreground="{StaticResource PhoneMutedTextBrush}" TextWrapping="Wrap" Margin="0,12,0,0" />
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

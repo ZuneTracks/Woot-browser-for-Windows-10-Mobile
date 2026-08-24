@@ -90,9 +90,11 @@
     <Compile Include="App.xaml.cs" />
     <Compile Include="MainPage.xaml.cs" />
     <Compile Include="Models\WootDeal.cs" />
+    <Compile Include="Models\WootOfferDetails.cs" />
     <Compile Include="Models\WootFeedViewModel.cs" />
     <Compile Include="Services\WootApiClient.cs" />
     <Compile Include="Views\SettingsPage.xaml.cs" />
+    <Compile Include="Views\OfferDetailsPage.xaml.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -102,6 +104,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\SettingsPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\OfferDetailsPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <AppxManifest Include="Package.appxmanifest" />

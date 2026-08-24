@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Page.Resources>
         <DataTemplate x:Key="DealTemplate">
-            <Border Background="{StaticResource PhoneCardBrush}" Padding="10">
+            <Border Background="{StaticResource PhoneCardBrush}" Padding="10" Tapped="Deal_Tapped">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="112" />
@@ -35,7 +35,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="64" />
             <RowDefinition Height="4" />
-            <RowDefinition Height="48" />
+            <RowDefinition Height="64" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Border Grid.Row="0" Background="{StaticResource PhoneHeaderBrush}">
@@ -55,7 +55,14 @@
             </Grid>
         </Border>
         <Border Grid.Row="1" Background="{StaticResource PhoneAccentBrush}" />
-        <Button Grid.Row="2" Content="REFRESH" Style="{StaticResource PhoneOutlineButtonStyle}" Click="RefreshButton_Click" HorizontalAlignment="Left" Margin="16,6,0,6" />
+        <Grid Grid.Row="2" Margin="16,4,16,4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Content="REFRESH" Style="{StaticResource PhoneOutlineButtonStyle}" Click="RefreshButton_Click" VerticalAlignment="Center" />
+            <TextBlock Grid.Column="1" Text="If nothing appears, press Refresh or go to Settings and verify that your API key is saved." Foreground="{StaticResource PhoneMutedTextBrush}" FontSize="11" TextWrapping="Wrap" VerticalAlignment="Center" Margin="12,0,0,0" />
+        </Grid>
         <Pivot x:Name="FeedPivot" Grid.Row="3" SelectionChanged="FeedPivot_SelectionChanged">
             <PivotItem Header="FEATURED"><ListView Margin="16" ItemsSource="{Binding Feeds[0].Deals}" ItemTemplate="{StaticResource DealTemplate}" ItemContainerStyle="{StaticResource PhoneListItemStyle}"><ListView.Header><TextBlock Text="{Binding Feeds[0].StatusText}" Foreground="{StaticResource PhoneMutedTextBrush}" TextWrapping="Wrap" Margin="0,0,0,10" /></ListView.Header></ListView></PivotItem>
             <PivotItem Header="ALL"><ListView Margin="16" ItemsSource="{Binding Feeds[1].Deals}" ItemTemplate="{StaticResource DealTemplate}" ItemContainerStyle="{StaticResource PhoneListItemStyle}"><ListView.Header><TextBlock Text="{Binding Feeds[1].StatusText}" Foreground="{StaticResource PhoneMutedTextBrush}" TextWrapping="Wrap" Margin="0,0,0,10" /></ListView.Header></ListView></PivotItem>

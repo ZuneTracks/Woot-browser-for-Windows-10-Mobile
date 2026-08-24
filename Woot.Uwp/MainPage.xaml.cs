@@ -46,28 +46,10 @@ namespace Woot.Uwp
             await LoadSelectedFeedAsync(true);
         }
 
-        private async Task ShowRefreshPromptAsync()
-        {
-            var dialog = new ContentDialog
-            {
-                Title = "Woot! is ready",
-                Content = "Please press Refresh to load the latest deals.",
-                PrimaryButtonText = "REFRESH",
-                CloseButtonText = "LATER"
-            };
-            if (await dialog.ShowAsync() == ContentDialogResult.Primary)
-                await LoadSelectedFeedAsync(true);
-        }
-
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            if (!hasLoadedOnce)
-            {
-                hasLoadedOnce = true;
-                return;
-            }
-            _ = ShowRefreshPromptAsync();
+            hasLoadedOnce = true;
         }
 
         private async void FeedPivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -181,6 +163,15 @@ namespace Woot.Uwp
             Frame.Navigate(typeof(SettingsPage));
         }
 
+        private void Deal_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            var border = sender as FrameworkElement;
+            var deal = border == null ? null : border.DataContext as WootDeal;
+            if (deal == null)
+                return;
+            Frame.Navigate(typeof(OfferDetailsPage), deal);
+        }
+
         private void ShowAboutButton_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
@@ -201,7 +192,7 @@ namespace Woot.Uwp
             var content = new StackPanel { Width = 260, Padding = new Thickness(8) };
             content.Children.Add(new TextBlock { Text = "Woot! UWP", FontSize = 24 });
             content.Children.Add(new TextBlock { Text = "Woot! UWP is a Universal Windows app for Windows 10 Mobile", TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 10, 0, 0) });
-            content.Children.Add(new TextBlock { Text = "Build 1.0.0.2", Margin = new Thickness(0, 10, 0, 0) });
+            content.Children.Add(new TextBlock { Text = "Build 1.0.0.7", Margin = new Thickness(0, 10, 0, 0) });
             content.Children.Add(new TextBlock { Text = "Developed by ZuneTracks" });
             content.Children.Add(new HyperlinkButton
             {
