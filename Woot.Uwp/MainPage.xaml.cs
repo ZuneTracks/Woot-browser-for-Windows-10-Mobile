@@ -17,6 +17,7 @@ namespace Woot.Uwp
     public sealed partial class MainPage : Page
     {
         private const string ApiKeySetting = "WootApiKey";
+        private const string StartCategorySetting = "WootStartCategory";
         private static readonly TimeSpan FeedRefreshInterval = TimeSpan.FromMinutes(15);
         private readonly WootApiClient apiClient = new WootApiClient();
         private readonly HashSet<int> loadingFeeds = new HashSet<int>();
@@ -36,6 +37,9 @@ namespace Woot.Uwp
             RootGrid.RequestedTheme = IsDarkTheme() ? ElementTheme.Dark : ElementTheme.Light;
             for (var index = 0; index < FeedPivot.Items.Count; index++)
                 ((PivotItem)FeedPivot.Items[index]).Header = CreateCategoryHeader(feedNames[index], index == 0);
+            var savedCategory = ApplicationData.Current.LocalSettings.Values[StartCategorySetting];
+            var categoryIndex = savedCategory is int ? (int)savedCategory : 0;
+            FeedPivot.SelectedIndex = categoryIndex >= 0 && categoryIndex < feedNames.Length ? categoryIndex : 0;
             refreshTimer = new DispatcherTimer { Interval = FeedRefreshInterval };
             refreshTimer.Tick += RefreshTimer_Tick;
             refreshTimer.Start();
@@ -50,6 +54,7 @@ namespace Woot.Uwp
         {
             base.OnNavigatedTo(e);
             hasLoadedOnce = true;
+            _ = LoadSelectedFeedAsync(false);
         }
 
         private async void FeedPivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -115,7 +120,7 @@ namespace Woot.Uwp
             if (feed.IsLoaded && !forceRefresh)
                 return;
 
-            var key = ApplicationData.Current.LocalSettings.Values[ApiKeySetting] as string;
+            var key = WootApiKeyProvider.Get();
             if (string.IsNullOrWhiteSpace(key))
             {
                 feed.StatusText = "Add your Woot API key in Settings to load this feed.";
@@ -134,6 +139,8 @@ namespace Woot.Uwp
                     feed.Deals.Add(deal);
                 feed.IsLoaded = true;
                 feed.StatusText = deals.Count == 0 ? "No deals were returned." : deals.Count + " deals";
+                if (index == 0)
+                    WootTileService.Update(null, feed.Deals);
             }
             catch (OperationCanceledException)
             {
@@ -169,6 +176,7 @@ namespace Woot.Uwp
             var deal = border == null ? null : border.DataContext as WootDeal;
             if (deal == null)
                 return;
+            WootTileService.Update(deal, Feeds.Count == 0 ? null : Feeds[0].Deals);
             Frame.Navigate(typeof(OfferDetailsPage), deal);
         }
 
@@ -192,7 +200,7 @@ namespace Woot.Uwp
             var content = new StackPanel { Width = 260, Padding = new Thickness(8) };
             content.Children.Add(new TextBlock { Text = "Woot! UWP", FontSize = 24 });
             content.Children.Add(new TextBlock { Text = "Woot! UWP is a Universal Windows app for Windows 10 Mobile", TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 10, 0, 0) });
-            content.Children.Add(new TextBlock { Text = "Build 1.0.0.7", Margin = new Thickness(0, 10, 0, 0) });
+            content.Children.Add(new TextBlock { Text = "Build 1.0.1.0", Margin = new Thickness(0, 10, 0, 0) });
             content.Children.Add(new TextBlock { Text = "Developed by ZuneTracks" });
             content.Children.Add(new HyperlinkButton
             {

@@ -40,7 +40,7 @@ namespace Woot.Uwp.Views
             StatusText.Text = "Loading deal details...";
             try
             {
-                var key = ApplicationData.Current.LocalSettings.Values["WootApiKey"] as string;
+                var key = WootApiKeyProvider.Get();
                 var details = await apiClient.GetOfferAsync(deal.OfferId, key, detailsCancellation.Token);
                 if (!pageActive)
                     return;

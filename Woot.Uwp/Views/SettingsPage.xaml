@@ -3,16 +3,45 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Grid x:Name="RootGrid" Background="{StaticResource PhonePageBrush}">
-        <ScrollViewer>
-            <StackPanel Margin="20,28">
-                <Button Content="‹  BACK" Style="{StaticResource PhoneOutlineButtonStyle}" Click="BackButton_Click" HorizontalAlignment="Left" />
-                <TextBlock Text="settings" FontSize="30" Foreground="{StaticResource PhonePrimaryTextBrush}" />
-                <TextBlock Text="Your Woot API key is stored locally on this device and is never included in the app." Foreground="{StaticResource PhoneMutedTextBrush}" TextWrapping="Wrap" Margin="0,4,0,20" />
-                <PasswordBox x:Name="ApiKeyBox" Header="Woot API key" PlaceholderText="Paste your API key" Foreground="{StaticResource PhonePrimaryTextBrush}" Background="{StaticResource PhoneCardBrush}" BorderBrush="{StaticResource PhoneMutedTextBrush}" Padding="10,7" Margin="0,4,0,12" />
-                <StackPanel Orientation="Horizontal">
-                    <Button Content="SAVE" Style="{StaticResource PhoneButtonStyle}" Click="SaveButton_Click" />
-                    <Button Content="CLEAR" Style="{StaticResource PhoneOutlineButtonStyle}" Click="ClearButton_Click" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="64" />
+            <RowDefinition Height="4" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Background="{StaticResource PhoneHeaderBrush}">
+            <Grid Margin="16,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Image Source="ms-appx:///Assets/Square44x44Logo.png" Width="38" Height="38" VerticalAlignment="Center" Stretch="Uniform" />
+                    <StackPanel Margin="10,0,0,0">
+                        <TextBlock Text="WOOT!" FontFamily="Segoe UI Semibold" FontSize="22" Foreground="{StaticResource PhonePrimaryTextBrush}" />
+                        <TextBlock Text="DAILY DEALS" FontSize="10" Foreground="{StaticResource PhoneMutedTextBrush}" />
+                    </StackPanel>
                 </StackPanel>
+                <Button Grid.Column="1" Content="‹  BACK" Style="{StaticResource PhoneOutlineButtonStyle}" Click="BackButton_Click" VerticalAlignment="Center" />
+            </Grid>
+        </Border>
+        <Border Grid.Row="1" Background="{StaticResource PhoneAccentBrush}" />
+        <ScrollViewer Grid.Row="2">
+            <StackPanel Margin="20,28">
+                <TextBlock Text="settings" FontSize="30" Foreground="{StaticResource PhonePrimaryTextBrush}" />
+                <TextBlock Text="STARTUP CATEGORY" Foreground="{StaticResource PhoneMutedTextBrush}" Margin="0,20,0,2" />
+                <ComboBox x:Name="StartCategorySelector" SelectionChanged="StartCategorySelector_SelectionChanged" Foreground="{StaticResource PhonePrimaryTextBrush}" Background="{StaticResource PhoneCardBrush}" Margin="0,4,0,4">
+                    <ComboBoxItem Content="Featured" />
+                    <ComboBoxItem Content="All" />
+                    <ComboBoxItem Content="Clearance" />
+                    <ComboBoxItem Content="Computers" />
+                    <ComboBoxItem Content="Electronics" />
+                    <ComboBoxItem Content="Home" />
+                    <ComboBoxItem Content="Gourmet" />
+                    <ComboBoxItem Content="Shirts" />
+                    <ComboBoxItem Content="Sports" />
+                    <ComboBoxItem Content="Tools" />
+                    <ComboBoxItem Content="Wootoff" />
+                </ComboBox>
                 <TextBlock Text="APPEARANCE" Foreground="{StaticResource PhoneMutedTextBrush}" Margin="0,20,0,2" />
                 <ToggleSwitch x:Name="DarkThemeSwitch" Header="Dark mode" Toggled="DarkThemeSwitch_Toggled" />
                 <TextBlock x:Name="StatusText" Foreground="{StaticResource PhoneMutedTextBrush}" TextWrapping="Wrap" Margin="0,16,0,0" />

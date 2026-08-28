@@ -1,0 +1,8 @@
+namespace Woot.Uwp
+{
+    internal static class LocalBuildConfiguration
+    {
+        // Copy this file to LocalBuildConfiguration.cs and enter your private key.
+        public const string ApiKey = "";
+    }
+}

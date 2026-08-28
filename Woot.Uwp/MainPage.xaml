@@ -61,7 +61,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Button Content="REFRESH" Style="{StaticResource PhoneOutlineButtonStyle}" Click="RefreshButton_Click" VerticalAlignment="Center" />
-            <TextBlock Grid.Column="1" Text="If nothing appears, press Refresh or go to Settings and verify that your API key is saved." Foreground="{StaticResource PhoneMutedTextBrush}" FontSize="11" TextWrapping="Wrap" VerticalAlignment="Center" Margin="12,0,0,0" />
+            <TextBlock Grid.Column="1" Text="If nothing appears, press Refresh." Foreground="{StaticResource PhoneMutedTextBrush}" FontSize="11" TextWrapping="Wrap" VerticalAlignment="Center" Margin="12,0,0,0" />
         </Grid>
         <Pivot x:Name="FeedPivot" Grid.Row="3" SelectionChanged="FeedPivot_SelectionChanged">
             <PivotItem Header="FEATURED"><ListView Margin="16" ItemsSource="{Binding Feeds[0].Deals}" ItemTemplate="{StaticResource DealTemplate}" ItemContainerStyle="{StaticResource PhoneListItemStyle}"><ListView.Header><TextBlock Text="{Binding Feeds[0].StatusText}" Foreground="{StaticResource PhoneMutedTextBrush}" TextWrapping="Wrap" Margin="0,0,0,10" /></ListView.Header></ListView></PivotItem>

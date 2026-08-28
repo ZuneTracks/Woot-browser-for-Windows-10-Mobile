@@ -23,3 +23,4 @@ Package.StoreAssociation.xml
 *.msix
 *.msixbundle
 *.msixupload
+Woot.Uwp/LocalBuildConfiguration.cs

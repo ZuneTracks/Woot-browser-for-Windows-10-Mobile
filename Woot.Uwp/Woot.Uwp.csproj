@@ -75,6 +75,9 @@
     <AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
     <StorePackage>true</StorePackage>
   </PropertyGroup>
+  <PropertyGroup Condition="Exists('$(MSBuildProjectDirectory)\LocalBuildConfiguration.cs')">
+    <DefineConstants>$(DefineConstants);WOOT_LOCAL_BUILD</DefineConstants>
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="5.2.9" />
   </ItemGroup>
@@ -93,6 +96,9 @@
     <Compile Include="Models\WootOfferDetails.cs" />
     <Compile Include="Models\WootFeedViewModel.cs" />
     <Compile Include="Services\WootApiClient.cs" />
+    <Compile Include="Services\WootTileService.cs" />
+    <Compile Include="Services\WootApiKeyProvider.cs" />
+    <Compile Include="LocalBuildConfiguration.cs" Condition="Exists('LocalBuildConfiguration.cs')" />
     <Compile Include="Views\SettingsPage.xaml.cs" />
     <Compile Include="Views\OfferDetailsPage.xaml.cs" />
   </ItemGroup>

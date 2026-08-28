@@ -8,42 +8,27 @@ namespace Woot.Uwp.Views
 {
     public sealed partial class SettingsPage : Page
     {
-        private const string ApiKeySetting = "WootApiKey";
+        private const string StartCategorySetting = "WootStartCategory";
 
         public SettingsPage()
         {
             InitializeComponent();
-            var value = ApplicationData.Current.LocalSettings.Values[ApiKeySetting] as string;
-            if (!string.IsNullOrEmpty(value))
-            {
-                ApiKeyBox.Password = value;
-                StatusText.Text = "An API key is saved locally.";
-            }
-            else
-                StatusText.Text = "No API key saved.";
+            var category = ApplicationData.Current.LocalSettings.Values[StartCategorySetting];
+            var categoryIndex = category is int ? (int)category : 0;
+            StartCategorySelector.SelectedIndex = categoryIndex >= 0 && categoryIndex < StartCategorySelector.Items.Count ? categoryIndex : 0;
+            StatusText.Text = "Startup category: " + ((ComboBoxItem)StartCategorySelector.SelectedItem).Content + ".";
             var theme = ApplicationData.Current.LocalSettings.Values["WootDarkTheme"];
             DarkThemeSwitch.IsOn = theme == null || (theme is bool && (bool)theme);
             RootGrid.RequestedTheme = DarkThemeSwitch.IsOn ? ElementTheme.Dark : ElementTheme.Light;
             App.ApplyTheme();
         }
 
-        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        private void StartCategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var key = ApiKeyBox.Password == null ? string.Empty : ApiKeyBox.Password.Trim();
-            if (string.IsNullOrEmpty(key))
-            {
-                StatusText.Text = "Enter an API key, or use Clear to remove the saved key.";
+            if (StartCategorySelector.SelectedIndex < 0)
                 return;
-            }
-            ApplicationData.Current.LocalSettings.Values[ApiKeySetting] = key;
-            StatusText.Text = "API key saved locally.";
-        }
-
-        private void ClearButton_Click(object sender, RoutedEventArgs e)
-        {
-            ApplicationData.Current.LocalSettings.Values.Remove(ApiKeySetting);
-            ApiKeyBox.Password = string.Empty;
-            StatusText.Text = "API key cleared.";
+            ApplicationData.Current.LocalSettings.Values[StartCategorySetting] = StartCategorySelector.SelectedIndex;
+            StatusText.Text = "Startup category saved.";
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -61,7 +46,7 @@ namespace Woot.Uwp.Views
             var content = new StackPanel { Width = 260, Padding = new Windows.UI.Xaml.Thickness(8) };
             content.Children.Add(new TextBlock { Text = "Woot! UWP", FontSize = 24 });
             content.Children.Add(new TextBlock { Text = "Woot! UWP is a Universal Windows app for Windows 10 Mobile", TextWrapping = TextWrapping.Wrap, Margin = new Windows.UI.Xaml.Thickness(0, 10, 0, 0) });
-            content.Children.Add(new TextBlock { Text = "Build 1.0.0.7", Margin = new Windows.UI.Xaml.Thickness(0, 10, 0, 0) });
+            content.Children.Add(new TextBlock { Text = "Build 1.0.1.0", Margin = new Windows.UI.Xaml.Thickness(0, 10, 0, 0) });
             content.Children.Add(new TextBlock { Text = "Developed by ZuneTracks" });
             content.Children.Add(new HyperlinkButton
             {
