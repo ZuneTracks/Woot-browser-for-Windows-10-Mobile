@@ -4,7 +4,7 @@
          xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
          IgnorableNamespaces="uap mp">
   <!-- Associate this project with the Store before creating Store packages. The Store association must replace the development identity values. -->
-  <Identity Name="WootNativePoc" Publisher="CN=WootDevelopment" Version="1.1.0.1" />
+  <Identity Name="WootNativePoc" Publisher="CN=WootDevelopment" Version="1.1.0.2" />
   <mp:PhoneIdentity PhoneProductId="6E2E9D62-8E64-4B5D-A7F7-5F5021C52B9D" PhonePublisherId="1E7B7E0D-A3A8-4D0F-BE4F-7A2E8E1D6B1A" />
   <Properties>
     <DisplayName>Woot!</DisplayName>
