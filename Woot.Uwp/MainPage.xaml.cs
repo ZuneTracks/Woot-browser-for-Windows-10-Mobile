@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Woot.Uwp.Models;
 using Woot.Uwp.Services;
 using Woot.Uwp.Views;
+using Windows.ApplicationModel;
 using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -200,7 +201,8 @@ namespace Woot.Uwp
             var content = new StackPanel { Width = 260, Padding = new Thickness(8) };
             content.Children.Add(new TextBlock { Text = "Woot! UWP", FontSize = 24 });
             content.Children.Add(new TextBlock { Text = "Woot! UWP is a Universal Windows app for Windows 10 Mobile", TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 10, 0, 0) });
-            content.Children.Add(new TextBlock { Text = "Build 1.0.1.0", Margin = new Thickness(0, 10, 0, 0) });
+            var version = Package.Current.Id.Version;
+            content.Children.Add(new TextBlock { Text = string.Format("Build {0}.{1}.{2}.{3}", version.Major, version.Minor, version.Build, version.Revision), Margin = new Thickness(0, 10, 0, 0) });
             content.Children.Add(new TextBlock { Text = "Developed by ZuneTracks" });
             content.Children.Add(new HyperlinkButton
             {
