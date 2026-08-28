@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.1.0.2 - About dialog disclaimer
+
+- Added a disclaimer to both About dialogs stating that the app is not affiliated
+  with Woot!, Amazon, or any of their affiliates.
+- Updated the package version to `1.1.0.2`.
+- Published a signed ARM AppX with the matching `WootDevelopment.cer`.
+
 ## v1.1.0.1 - Live tile and About updates
 
 - Improved Windows 10 Mobile live-tile notification compatibility with supported
