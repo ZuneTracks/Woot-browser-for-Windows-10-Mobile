@@ -47,7 +47,7 @@ namespace Woot.Uwp.Services
                 featuredText
             };
 
-            return "<tile><visual branding='name'>" +
+            return "<tile><visual>" +
                 BuildBinding("TileSquare150x150Text04", lines) +
                 BuildBinding("TileWide310x150Text03", lines) +
                 "</visual></tile>";

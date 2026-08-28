@@ -46,7 +46,7 @@ namespace Woot.Uwp.Views
             var content = new StackPanel { Width = 260, Padding = new Windows.UI.Xaml.Thickness(8) };
             content.Children.Add(new TextBlock { Text = "Woot! UWP", FontSize = 24 });
             content.Children.Add(new TextBlock { Text = "Woot! UWP is a Universal Windows app for Windows 10 Mobile. This app allows you to browse the current deals found on Woot!", TextWrapping = TextWrapping.Wrap, Margin = new Windows.UI.Xaml.Thickness(0, 10, 0, 0) });
-            content.Children.Add(new TextBlock { Text = "Build 1.1.0.0", Margin = new Windows.UI.Xaml.Thickness(0, 10, 0, 0) });
+            content.Children.Add(new TextBlock { Text = "Build 1.1.0.1", Margin = new Windows.UI.Xaml.Thickness(0, 10, 0, 0) });
             content.Children.Add(new TextBlock { Text = "Developed by ZuneTracks" });
             content.Children.Add(new HyperlinkButton
             {
