@@ -5,6 +5,7 @@ using Woot.Uwp.Models;
 using Windows.Data.Xml.Dom;
 using Windows.Storage;
 using Windows.UI.Notifications;
+using System.Diagnostics;
 
 namespace Woot.Uwp.Services
 {
@@ -26,8 +27,13 @@ namespace Woot.Uwp.Services
             var price = lastViewed == null ? settings[LastViewedPrice] as string : lastViewed.SalePrice;
             var featured = featuredDeals == null ? new List<WootDeal>() : featuredDeals.Take(2).ToList();
             var document = new XmlDocument();
-            document.LoadXml(BuildTileXml(title, price, featured));
-            TileUpdateManager.CreateTileUpdaterForApplication().Update(new TileNotification(document));
+            var xml = BuildTileXml(title, price, featured);
+            Debug.WriteLine("Woot tile XML: " + xml);
+            document.LoadXml(xml);
+            var updater = TileUpdateManager.CreateTileUpdaterForApplication();
+            Debug.WriteLine("Woot tile updater created. Enabled=" + updater.Setting);
+            updater.Update(new TileNotification(document));
+            Debug.WriteLine("Woot tile update submitted.");
         }
 
         private static string BuildTileXml(string lastTitle, string lastPrice, IList<WootDeal> featured)
@@ -48,14 +54,14 @@ namespace Woot.Uwp.Services
             };
 
             return "<tile><visual>" +
-                BuildBinding("TileSquare150x150Text04", lines) +
-                BuildBinding("TileWide310x150Text03", lines) +
+                BuildBinding("TileWide310x150Text03", "TileWideText03", lines) +
+                BuildBinding("TileSquare150x150Text04", "TileSquareText04", lines) +
                 "</visual></tile>";
         }
 
-        private static string BuildBinding(string template, IList<string> lines)
+        private static string BuildBinding(string template, string fallback, IList<string> lines)
         {
-            return "<binding template='" + template + "'>" +
+            return "<binding template='" + template + "' fallback='" + fallback + "'>" +
                 string.Join(string.Empty, lines.Select((line, index) => "<text id='" + (index + 1) + "'>" + Escape(line) + "</text>")) +
                 "</binding>";
         }
