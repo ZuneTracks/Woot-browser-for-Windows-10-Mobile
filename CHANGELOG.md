@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.1.0.1 - Live tile and About updates
+
+- Improved Windows 10 Mobile live-tile notification compatibility with supported
+  square and wide text templates plus legacy fallbacks.
+- Added diagnostics around live-tile XML generation and notification submission.
+- Updated the About dialog in MainPage and SettingsPage to read the installed
+  package version dynamically from the app manifest.
+- Added the current Woot! app description to the About dialog.
+- Published a signed ARM AppX with the matching `WootDevelopment.cer`.
+
 ## v1.0.9.0 - Store packaging preparation
 
 - Added an explicit ARM Store-upload configuration that creates an unsigned
