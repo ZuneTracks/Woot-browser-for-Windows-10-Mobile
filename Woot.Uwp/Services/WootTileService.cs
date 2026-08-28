@@ -48,9 +48,6 @@ namespace Woot.Uwp.Services
             };
 
             return "<tile><visual branding='name'>" +
-                "<binding template='TileSquare71x71Image'>" +
-                "<image id='1' src='ms-appx:///Assets/Square44x44Logo.png' alt='Woot!' />" +
-                "</binding>" +
                 BuildBinding("TileSquare150x150Text04", lines) +
                 BuildBinding("TileWide310x150Text03", lines) +
                 "</visual></tile>";
