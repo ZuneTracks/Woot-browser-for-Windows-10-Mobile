@@ -48,8 +48,8 @@ namespace Woot.Uwp.Services
                 : "Last viewed: " + lastTitle + (string.IsNullOrWhiteSpace(lastPrice) ? string.Empty : " - " + lastPrice);
             var lines = new List<string>
             {
-                "WOOT! DEALS",
                 lastViewedText,
+                "WOOT! DEALS",
                 featuredText
             };
 
