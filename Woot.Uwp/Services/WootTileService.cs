@@ -6,6 +6,7 @@ using Windows.Data.Xml.Dom;
 using Windows.Storage;
 using Windows.UI.Notifications;
 using System.Diagnostics;
+using System.Text;
 
 namespace Woot.Uwp.Services
 {
@@ -69,7 +70,21 @@ namespace Woot.Uwp.Services
 
         private static string Escape(string value)
         {
-            return (value ?? string.Empty).Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;");
+            var text = value ?? string.Empty;
+            var builder = new StringBuilder(text.Length);
+            foreach (var character in text)
+            {
+                if (IsXmlCharacter(character))
+                    builder.Append(character);
+            }
+            return builder.ToString().Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;");
+        }
+
+        private static bool IsXmlCharacter(char character)
+        {
+            return character == '\t' || character == '\n' || character == '\r' ||
+                (character >= '\u0020' && character <= '\uD7FF') ||
+                (character >= '\uE000' && character <= '\uFFFD');
         }
     }
 }
