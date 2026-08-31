@@ -1,5 +1,17 @@
 # Changelog
 
+## v1.1.2 - Live tile reliability
+
+- Fixed live-tile text ordering so the previously viewed deal is displayed before
+  the static Woot! Deals label.
+- Added large-square tile content for devices that use the 310x310 tile layout.
+- Sanitized deal text before generating tile XML to prevent malformed API text from
+  crashing the app.
+- Removed the synchronous tile refresh during startup so the app can progress past
+  the splash screen reliably.
+- Updated the package version to `1.1.2.0`.
+- Published a signed ARM Release AppX.
+
 ## v1.1.0.2 - About dialog disclaimer
 
 - Added a disclaimer to both About dialogs stating that the app is not affiliated

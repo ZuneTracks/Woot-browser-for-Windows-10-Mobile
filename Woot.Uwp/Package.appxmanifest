@@ -1,10 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
-         xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
-         xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
-         IgnorableNamespaces="uap mp">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
   <!-- Associate this project with the Store before creating Store packages. The Store association must replace the development identity values. -->
-  <Identity Name="WootNativePoc" Publisher="CN=WootDevelopment" Version="1.1.1.0" />
+  <Identity Name="WootNativePoc" Publisher="CN=WootDevelopment" Version="1.1.2.0" />
   <mp:PhoneIdentity PhoneProductId="6E2E9D62-8E64-4B5D-A7F7-5F5021C52B9D" PhonePublisherId="1E7B7E0D-A3A8-4D0F-BE4F-7A2E8E1D6B1A" />
   <Properties>
     <DisplayName>Woot!</DisplayName>
@@ -19,12 +16,14 @@
   </Dependencies>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="Woot.Uwp.App">
-      <uap:VisualElements DisplayName="Woot!"
-                      Description="A native Woot daily deals browser"
-                          BackgroundColor="transparent"
-                          Square150x150Logo="Assets\Square150x150Logo.png"
-                          Square44x44Logo="Assets\Square44x44Logo.png">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" />
+      <uap:VisualElements DisplayName="Woot! Deals Browser" Description="A native Woot daily deals browser" BackgroundColor="transparent" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png">
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square310x310Logo="Assets\LargeTile.png" Square71x71Logo="Assets\SmallTile.png" ShortName="Woot! Deals">
+          <uap:ShowNameOnTiles>
+            <uap:ShowOn Tile="square150x150Logo" />
+            <uap:ShowOn Tile="wide310x150Logo" />
+            <uap:ShowOn Tile="square310x310Logo" />
+          </uap:ShowNameOnTiles>
+        </uap:DefaultTile>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
     </Application>
