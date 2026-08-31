@@ -56,6 +56,7 @@ namespace Woot.Uwp.Services
             return "<tile><visual>" +
                 BuildBinding("TileWide310x150Text03", "TileWideText03", lines) +
                 BuildBinding("TileSquare150x150Text04", "TileSquareText04", lines) +
+                BuildBinding("TileSquare310x310Text03", "TileSquare310x310Text03", lines) +
                 "</visual></tile>";
         }
 
