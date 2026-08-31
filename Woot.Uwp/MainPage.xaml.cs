@@ -44,7 +44,6 @@ namespace Woot.Uwp
             refreshTimer = new DispatcherTimer { Interval = FeedRefreshInterval };
             refreshTimer.Tick += RefreshTimer_Tick;
             refreshTimer.Start();
-            WootTileService.Update(null, null);
         }
 
         private async void RefreshButton_Click(object sender, RoutedEventArgs e)
